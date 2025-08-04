@@ -7,14 +7,18 @@ const bodyParser = require('body-parser');
 dotenv.config();
 
 const app = express();
-
 app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true, // optional: only if using cookies or auth headers
+  origin: '*',
+  credentials: true
 }));
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   credentials: true, // optional: only if using cookies or auth headers
+// }));
 
 app.use(bodyParser.json({ limit: '10mb' }));
 
+app.get('/api/test', (req, res) => res.send('API is working!'));
 
 
 mongoose.connect(process.env.MONGODB_URI, {
